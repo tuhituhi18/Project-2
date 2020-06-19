@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "j9v3p1az4gqchhgj",
-    "password": "qc1koziaytflfxnx",
-    "database": "mnzyr53ir74nyxl4",
-    "host": "wm63be5w8m7gs25a.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": "root",
+    "password": "0504",
+    "database": "cravings_db",
+    "host": "127.0.0.1",
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
