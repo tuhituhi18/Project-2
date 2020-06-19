@@ -56,3 +56,5 @@ $(document).ready(() => {
 
   getLocation();
 });
+
+module.exports = login;
