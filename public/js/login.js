@@ -3,6 +3,9 @@ $(document).ready(() => {
   const loginForm = $("form.login");
   const emailInput = $("input#email-input");
   const passwordInput = $("input#password-input");
+  var latitude;
+  var longitude;
+
 
   // When the form is submitted, we validate there's an email and password entered
   loginForm.on("submit", event => {
@@ -29,11 +32,27 @@ $(document).ready(() => {
       password: password
     })
       .then(() => {
-        window.location.replace("/members");
+        window.location.replace("/");
         // If there's an error, log the error
       })
       .catch(err => {
         console.log(err);
       });
   }
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+
+  function showPosition(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+
+  }
+
+  getLocation();
 });
