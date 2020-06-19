@@ -4,8 +4,8 @@
     "password": null,
     "database": "cravings_db",
     "host": "localhost",
-    "dialect": "mysql",
-    "port": "3306"
+    "port": 3306,
+    "dialect": "mysql"
   },
   "test": {
     "username": "j9v3p1az4gqchhgj",
