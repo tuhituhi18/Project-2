@@ -39,7 +39,7 @@ $(document).ready(() => {
         console.log(err);
       });
   }
-
+  // method used to return the user's position, returns the latitude and logitude 
   function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
