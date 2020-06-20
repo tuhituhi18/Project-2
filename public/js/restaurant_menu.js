@@ -25,7 +25,6 @@ $(document).ready(function () {
 
             var menuItem = []
 
-
             for (var i = 0; i < response.result.data.length; i++) {
 
 
@@ -34,7 +33,9 @@ $(document).ready(function () {
                 console.log(foodApp);
 
                 var foodName = response.result.data[i].menu_item_name;
-                console.log(foodName);
+
+                var resId = response.result.data[i].restaurant_id;
+                console.log(resId);
 
                 var geoLat = response.result.data[i].geo.lat;
                 console.log(geoLat);
@@ -47,14 +48,49 @@ $(document).ready(function () {
                 d1.append(foodApp);
 
 
-
-
-
-
-
-
             };
+
+            menuAPI(response.result.data[0].restaurant_id);
         });
 
     });
+
+
+
+
+    $("#searchMenuBtn").on("click", function (event) {
+        event.preventDefault();
+        console.log("I've been clicked");
+        $("#resMenu").empty();
+        //search movie should equal to the value entered by the user from the input field with an id of userMovieInput
+        var searchMenu = $("#userMenuInput").val().trim();
+        console.log(searchMenu);
+
+
+    });
+
 });
+
+
+
+function menuAPI(restaurantId) {
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": `https://us-restaurant-menus.p.rapidapi.com/restaurant/${restaurantId}/`,
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
+            "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+
+    });
+
+
+
+};
