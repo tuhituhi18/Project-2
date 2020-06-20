@@ -33,6 +33,7 @@ $(document).ready(function () {
                 console.log(foodApp);
 
                 var foodName = response.result.data[i].menu_item_name;
+                console.log(foodName);
 
                 var resId = response.result.data[i].restaurant_id;
                 console.log(resId);
@@ -45,7 +46,7 @@ $(document).ready(function () {
 
                 var d1 = $("<div>").attr("class", "container");
 
-                d1.append(foodApp);
+                d1.append(foodApp, foodName,);
 
 
             };
