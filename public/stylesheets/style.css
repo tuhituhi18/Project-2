@@ -2,3 +2,9 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+h1 {
+  background: url(https://superdevresources.com/wp-content/uploads/2014/11/black-metal-grill-texture-vector.jpg);
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
