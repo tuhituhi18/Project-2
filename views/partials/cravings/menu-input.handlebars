@@ -1,0 +1,107 @@
+<div id="menu-input" class="menu align-center" class="container" style="text-align: center;">
+    
+    <form>
+        <!--Search Bar title-->
+        <label for="mname">Enter Food</label>
+        <br>
+        <br>
+        <!--Search Bar-->
+        <input type="text" id="userMenuInput" name="mname" placeholder="example: Filet Mignon">
+        <br>
+        <br>
+        <label for="mname">Enter Distance</label>
+        <br>
+        <br>
+        <!--Search Bar-->
+        <input type="text" id="userMileInput" name="mname" placeholder="example: 5 miles">
+        <br>
+        <br>
+        <!--Search Btn-->
+        <button id="searchFoodBtn" type="button" class="btn btn-primary">Lets Eat</button>
+        <br>
+        <br>    
+    </form>
+
+</div>
+
+        <div style="text-align: center; margin-top: 50px" id="signUpContainer">
+          <a href="/signup">  <button id="signUp" type="button" >Sign-Up to save your favorites!</button></a>
+        </div>
+
+
+
+
+<!--new page-->
+<div class="holy-grail-grid hide" id="search-results">
+  <div class="holy-grail-header">
+    <nav class="top-bar topbar-responsive">
+        <div class="top-bar-title">
+          <span data-responsive-toggle="topbar-responsive" data-hide-for="medium">
+            <button class="menu-icon" type="button" data-toggle></button>
+          </span>
+          <a class="topbar-responsive-logo" href="#"><strong>{{{name}}}</strong></a>
+        </div>
+        <div id="topbar-responsive" class="topbar-responsive-links">
+          <div class="top-bar-right">
+            <ul class="menu simple vertical medium-horizontal">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">My Favorites</a></li>
+                <li>{{{member-name}}}</li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+  </div>
+
+  <div class="holy-grail-left">
+    <h3>Nav</h3>
+    <ul>
+      <li><a href="#">Link 1</a></li>
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+    </ul>
+  </div>
+
+  <div class="holy-grail-middle">
+
+    <div id="map" style= "height:50%"></div>
+  </div>
+
+  <div class="holy-grail-footer">
+    <h3>Footer</h3>
+  </div>
+
+</div>
+
+
+<script>
+    document.getElementById("searchFoodBtn").addEventListener("click", function(){
+        
+    document.getElementById("menu-input").classList.add("hide")
+
+    document.getElementById("signUpContainer").classList.add("hide")
+
+    document.getElementById("search-results").classList.remove("hide")
+
+        var menuInput = document.getElementById("userMenuInput").value
+        console.log(menuInput)
+
+        var mileInput = document.getElementById("userMileInput").value
+        console.log(mileInput)
+
+        fetch("https://us-restaurant-menus.p.rapidapi.com/restaurants/search/geo?page=1&lon=-73.992378&lat=40.68919&distance=1", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
+		"x-rapidapi-key": "d171c5efcamshe388becaf67f131p1726a6jsn26af57a60a7a"
+	}
+})
+.then(response => {
+	console.log(response);
+})
+.catch(err => {
+	console.log(err);
+});
+
+    })
+</script>

@@ -1,23 +1,5 @@
 <h1 class="animate__animated animate__backInDown" style="text-align: center;">CRAVINGS!!!</h1>
 
-    <div  class="menu align-center" class="container" style="text-align: center;">
-        <form>
-            <!--Search Bar title-->
-            <label id="enterFood" for="mname">Enter Food</label>
-            <br>
-            <br>
-            <!--Search Bar-->
-            <input type="text" id="userMenuInput" name="mname" placeholder="example: Filet Mignon">
-            <br>
-            <!--Search Btn-->
-            <button href="/signup" id="searchMenuBtn" type="button" class="btn btn-primary">Lets Eat</button>
-            <br>
-            <button id="saveFavorite" type="button" class="btn btn-primary">Favorite</button>
-        </form>
-    </div>
-
-    <div id="map" style= "height:50%"></div>
-
-<form action="/signup" style="text-align: center; margin-top: 50px">
-    <input id="signUp" type="submit" value="Sign-Up to save your favorites!" />
-</form>
+{{> cravings/menu-input}}
+{{!-- 
+{{> cravings/cravings-search}} --}}

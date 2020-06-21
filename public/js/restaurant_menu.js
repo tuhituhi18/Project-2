@@ -5,12 +5,6 @@ var map;
 
 function initMap(locations) {
 
-    // const locations = [
-    //     //this will be an empty array filled with info from menu search
-    //     ["Hughies", 29.7982, -95.3833],
-    //     ["ban oui", 29.7341, -95.3997],
-    // ];
-
     map = new google.maps.Map(document.getElementById("map"), {
         //if statement for window,userlocation 
         center: { lat: 29.76, lng: -95.36 },
@@ -39,7 +33,6 @@ function initMap(locations) {
     }
 
 }
-
 
     $("#searchMenuBtn").on("click", function (event) {
         event.preventDefault();
