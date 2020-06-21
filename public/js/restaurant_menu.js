@@ -1,11 +1,10 @@
 $(document).ready(function () {
 
-
     $("#searchMenuBtn").on("click", function (event) {
         event.preventDefault();
         console.log("I've been clicked");
         $("#resMenu").empty();
-        //search movie should equal to the value entered by the user from the input field with an id of userMovieInput
+        //search menu should equal to the value entered by the user from the input field with an id of userMenuInput
         var searchMenu = $("#userMenuInput").val().trim();
         console.log(searchMenu);
 
@@ -22,13 +21,8 @@ $(document).ready(function () {
 
         $.ajax(settings).done(function (response) {
             console.log(response);
-
             var menuItem = []
-
             for (var i = 0; i < response.result.data.length; i++) {
-
-
-
                 var foodApp = response.result.data[i].restaurant_name;
                 console.log(foodApp);
 
@@ -46,51 +40,70 @@ $(document).ready(function () {
                 var d1 = $("<div>").attr("class", "container");
 
                 d1.append(foodApp);
-
-
             };
-
             menuAPI(response.result.data[0].restaurant_id);
         });
 
     });
 
-
-
-
     $("#searchMenuBtn").on("click", function (event) {
         event.preventDefault();
         console.log("I've been clicked");
         $("#resMenu").empty();
-        //search movie should equal to the value entered by the user from the input field with an id of userMovieInput
+        //search menu should equal to the value entered by the user from the input field with an id of user userMenuInput
         var searchMenu = $("#userMenuInput").val().trim();
         console.log(searchMenu);
-
-
     });
+
+
+
+    function menuAPI(restaurantId) {
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": `https://us-restaurant-menus.p.rapidapi.com/restaurant/${restaurantId}/`,
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
+                "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+
+    };
+
+    // creating an ajax call when a specific resturant is clicked on to pull up the map
+
+    var restaurant = $(this).attr("restaurantId");
+
+    // queryURL using the restaurant
+    var queryURL = "https://maps.googleapis.com/maps/api/js?" +
+        restaurant + "key=AIzaSyBWoP6f-9psxjG3WLdFuIGUvc9Xrjh6itA&callback=initMap"
+
+    // performing an ajax request with the queryURL
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+
+        // after data comes back from the request
+        .then(function (response) {
+            console.log(queryURL);
+
+            // storing the data from the ajax request in the results variable "data"
+            var results = response.data;
+
+            var restaurantDiv = $("<div>");
+
+            restaurantDiv.append(map);
+
+        })
+
+
+
 
 });
-
-
-
-function menuAPI(restaurantId) {
-
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": `https://us-restaurant-menus.p.rapidapi.com/restaurant/${restaurantId}/`,
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
-            "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
-        }
-    }
-
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-
-    });
-
-
-
-};
