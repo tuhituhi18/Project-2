@@ -12,6 +12,7 @@ module.exports = function(app) {
       email: req.user.email,
       id: req.user.id
     });
+    console.log(res.user);
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -62,8 +63,10 @@ module.exports = function(app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
-        // email: req.user.email,
-        // id: req.user.id
+        // restaurantName: res.body.restaurantName,
+        // foodName: res.body.foodName,
+        // geoLat: res.body.geoLat,
+        // geoLon: res.body.geoLon,
       });
     }
   });
