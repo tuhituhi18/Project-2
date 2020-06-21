@@ -22,6 +22,7 @@ h1 {
   padding-bottom: 25px;
   color: lightgray;
   font-family: cursive;
+  margin-bottom: 0px;
 }
 
 #enterFood {
@@ -48,4 +49,8 @@ button {
 #signUp {
   background: black;
   color: lightgray;
+}
+
+.hide{
+  display: none;
 }
