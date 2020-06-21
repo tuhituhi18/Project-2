@@ -1,4 +1,38 @@
+
 $(document).ready(function () {
+
+    var map;
+
+    function initMap(locations) {
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            //if statement for window,userlocation 
+            center: { lat: 29.76, lng: -95.36 },
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+        });
+
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                //get results to pull from locations once we figure out how that info is coming in
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map,
+
+            });
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+
+    }
 
     $("#searchMenuBtn").on("click", function (event) {
         event.preventDefault();
@@ -36,6 +70,7 @@ $(document).ready(function () {
                 var geoLon = response.result.data[i].geo.lon;
                 console.log(geoLon);
 
+                initMap([[foodApp, geoLat, geoLon]])
 
                 var d1 = $("<div>").attr("class", "container");
 
@@ -104,6 +139,25 @@ $(document).ready(function () {
         })
 
 
+    $("#saveFavorite").on("click", function (event) {
+        event.preventDefault();
+        console.log("I've been clicked");
 
+        var favorite = {
+            "async": true,
+            "url": "/api/user_data",
+            "method": "POST",
+            "data": {
+                restaurantName: "Becks",
+                foodName: "burger",
+                geoLat: 29.7604,
+                geoLon: -95.3698,
+            }
+        }
+        $.ajax(favorite).done(function (response) {
+            console.log(response.status)
+        })
+
+    });
 
 });

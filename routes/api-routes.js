@@ -12,6 +12,7 @@ module.exports = function(app) {
       email: req.user.email,
       id: req.user.id
     });
+    console.log(res.user);
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -36,6 +37,23 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
+  app.post("/api/user_data", (req, res) => {
+    console.log(req.body)
+    db.UserFavorite.create({
+      restaurantName: req.body.restaurantName,
+      foodName: req.body.foodName,
+      geoLat: req.body.geoLat,
+      geoLon: req.body.geoLon,
+    })
+    .then(()=>{
+      res.status(201);
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(401).json(err);
+    });
+  
+  })
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
@@ -45,8 +63,10 @@ module.exports = function(app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
-        email: req.user.email,
-        id: req.user.id
+        // restaurantName: res.body.restaurantName,
+        // foodName: res.body.foodName,
+        // geoLat: res.body.geoLat,
+        // geoLon: res.body.geoLon,
       });
     }
   });
