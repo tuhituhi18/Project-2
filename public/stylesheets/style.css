@@ -2,3 +2,55 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+body {
+  background-image: url(https://image.freepik.com/free-photo/paper-texture-with-pattern_107441-49.jpg);
+  font-family: cursive;
+}
+
+.navbar {
+  background: url(https://superdevresources.com/wp-content/uploads/2014/11/black-metal-grill-texture-vector.jpg);
+}
+
+.navText {
+  color: lightgray;
+}
+
+h1 {
+  background: url(https://superdevresources.com/wp-content/uploads/2014/11/black-metal-grill-texture-vector.jpg);
+  padding-top: 25px;
+  padding-bottom: 25px;
+  color: lightgray;
+  font-family: cursive;
+  margin-bottom: 0px;
+}
+
+#enterFood {
+  font-size: x-large;
+  text-decoration: underline;
+}
+
+#userMenuInput {
+  width: 500px;
+}
+
+#searchMenuBtn {
+  margin-top: 50px;
+}
+
+button {
+  border: outset;
+  background: black;
+  color: lightgray;
+  font-family: cursive;
+  padding: 5px;
+}
+
+#signUp {
+  background: black;
+  color: lightgray;
+}
+
+.hide{
+  display: none;
+}
