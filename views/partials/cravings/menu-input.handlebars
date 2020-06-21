@@ -56,9 +56,11 @@
   <div class="holy-grail-left">
     <h3>Nav</h3>
     <ul>
-      <li><a href="#">Link 1</a></li>
-      <li><a href="#">Link 2</a></li>
-      <li><a href="#">Link 3</a></li>
+        <div id="resList" class="container" style="text-align: center; display: flex">
+            <ul id="listbox-groups">
+            </ul>
+            <ul id="resMenu" class="container" style="text-align: center;"></ul>
+        </div>
     </ul>
   </div>
 
@@ -83,18 +85,7 @@
 
     document.getElementById("search-results").classList.remove("hide")
 
-        var menuInput = document.getElementById("userMenuInput").value
-        console.log(menuInput)
 
-        var mileInput = document.getElementById("userMileInput").value
-        console.log(mileInput)
-
-        fetch("https://us-restaurant-menus.p.rapidapi.com/restaurants/search/geo?page=1&lon=-73.992378&lat=40.68919&distance=1", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
-		"x-rapidapi-key": "d171c5efcamshe388becaf67f131p1726a6jsn26af57a60a7a"
-	}
 })
 .then(response => {
 	console.log(response);
@@ -103,5 +94,4 @@
 	console.log(err);
 });
 
-    })
 </script>
