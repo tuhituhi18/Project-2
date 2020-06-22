@@ -1,5 +1,38 @@
-// $(document).ready(function () {
 
+$(document).ready(function () {
+
+var map;
+
+function initMap(locations) {
+
+    map = new google.maps.Map(document.getElementById("map"), {
+        //if statement for window,userlocation 
+        center: { lat: 29.76, lng: -95.36 },
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+    
+    });
+    
+    
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+    for (i = 0; i < locations.length; i++) {  
+        marker = new google.maps.Marker({
+            //get results to pull from locations once we figure out how that info is coming in
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map,
+            
+        });
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+
+}
 
 //     $("#searchMenuBtn").on("click", function (event) {
 //         event.preventDefault();
@@ -142,6 +175,9 @@ $(document).ready(function () {
                 console.log(geoLat);
                 var geoLon = response.result.data[i].geo.lon;
                 console.log(geoLon);
+
+                initMap([[foodApp, geoLat, geoLon]])
+
                 var d1 = $("<div>").attr("class", "container");
                 d1.append(foodApp);
             };
@@ -184,25 +220,36 @@ $(document).ready(function () {
                 "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
             }
         }
-        $.ajax(settings).done(function (response) {
-            console.log(response);
-            var result = [];
-            var searchMenu = $("#userMenuInput").val().trim();
-            for (var i = 0; i < response.menu.length; i++) {
-                for (var j = 0; j < response.menu[i].menu_sections.length; j++) {
-                    for (var k = 0; k < response.menu[i].menu_sections[j].menu_items.length; k++) {
-                        var menItem = response.menu[i].menu_sections[j].menu_items[k]
-                        if (menItem.name.includes(searchMenu)) {
-                            result.append(menItem);
-                        }
-                    }
-                }
-            }
-            for (var i = 0; i < result.length; i++) {
-                var name = result[i].name;
-                $('#resMenu').append('<li class="listbox-li">' + name + '</li>');
-            }
-        });
-    };
-    // creating an ajax call when a specific resturant is clicked on to pull up the map
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+
+    });
+
+
+
+});
+
+$("#saveFavorite").on("click", function (event) {
+    event.preventDefault();
+    console.log("I've been clicked");
+
+    var favorite={
+        "async": true,
+        "url": "/api/user_data",
+        "method": "POST",
+        "data": {
+            restaurantName: "Becks",
+            foodName: "burger",
+            geoLat: 29.7604,
+            geoLon: -95.3698,
+        }
+    }
+    $.ajax(favorite).done(function(response){
+        console.log(response.status)
+    })
+
+
+});
 });
