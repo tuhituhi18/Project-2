@@ -24,6 +24,14 @@ $(document).ready(function () {
 
 
     $("#searchFoodBtn").on("click", function (event) {
+
+
+        document.getElementById("menu-input").classList.add("hide")
+
+        document.getElementById("signUpContainer").classList.add("hide")
+
+        document.getElementById("search-results").classList.remove("hide")
+
         event.preventDefault();
         console.log("I've been clicked");
         $("#listbox-groups").empty();
@@ -38,7 +46,10 @@ $(document).ready(function () {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": `https://us-restaurant-menus.p.rapidapi.com/menuitems/search/geo?distance=${searchMile}&lat=${latitude}&page=50&q=${searchMenu}&lon=${longitude}`,
+            //"url": `https://us-restaurant-menus.p.rapidapi.com/menuitems/search/geo?distance=${searchMile}&lat=${latitude}&page=50&q=${searchMenu}&lon=${longitude}`,
+            "url": `https://us-restaurant-menus.p.rapidapi.com/restaurants/search/geo?page=1&lon=${longitude}&lat=${latitude}&distance=${searchMile}`,
+            // "url": `https://us-restaurant-menus.p.rapidapi.com/menuitems/search?distance=${searchMile}&lat=${latitude}&page=50&q=${searchMenu}&lon=${longitude}`,
+
 
             "method": "GET",
             "headers": {
@@ -46,41 +57,91 @@ $(document).ready(function () {
                 "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
             }
         }
+
+
         $.ajax(settings).done(function (response) {
-            console.log(response);
-            var menuItem = []
+
+            var resArray = []
+
+
             for (var i = 0; i < response.result.data.length; i++) {
 
-                var foodApp = response.result.data[i].restaurant_name;
-                console.log(foodApp);
-                var foodName = response.result.data[i].menu_item_name;
+                if (response.result.data[i].restaurant_name.toLowerCase().includes(searchMenu.toLowerCase()) || response.result.data[i].cuisines.map((x) => { return x.toLowerCase() }).includes(searchMenu.toLowerCase())) {
 
-                var resId = response.result.data[i].restaurant_id;
-                console.log(resId);
-                var geoLat = response.result.data[i].geo.lat;
-                console.log(geoLat);
-                var geoLon = response.result.data[i].geo.lon;
-                console.log(geoLon);
-                var d1 = $("<div>").attr("class", "container");
-                d1.append(foodApp);
+                    var foodApp = response.result.data[i].restaurant_name;
+                    console.log(foodApp);
+                    var foodName = response.result.data[i].menu_item_name;
+
+                    var resId = response.result.data[i].restaurant_id;
+                    console.log(resId);
+                    var geoLat = response.result.data[i].geo.lat;
+                    console.log(geoLat);
+                    var geoLon = response.result.data[i].geo.lon;
+                    console.log(geoLon);
+
+
+                    var id = response.result.data[i].restaurant_id;
+                    var name = response.result.data[i].restaurant_name;
+                    $('#listbox-groups').append('<li id="' + id + '" class="listbox-li"><a href="#" class="listbox-li-a" style="text-decoration: none">' + name + '</a></li>');
+
+
+                    resArray.push([foodApp, geoLat, geoLon])
+
+                }
+
             };
 
+
+            var map;
+
+            function initMap() {
+
+                const locations = resArray;
+                //this will be an empty array filled with info from menu search
+                console.log(locations);
+
+
+                map = new google.maps.Map(document.getElementById("map"), {
+                    //if statement for window,userlocation 
+                    center: { lat: latitude, lng: longitude },
+                    zoom: 10,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+                });
+
+
+                var infowindow = new google.maps.InfoWindow();
+
+                var marker, i;
+                for (i = 0; i < locations.length; i++) {
+                    marker = new google.maps.Marker({
+                        //get results to pull from locations once we figure out how that info is coming in
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        map: map,
+
+                    });
+                    google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                        return function () {
+                            infowindow.setContent(locations[i][0]);
+                            infowindow.open(map, marker);
+                        }
+                    })(marker, i));
+                }
+
+
+            }
+            initMap()
+
+
             const result = [];
-            const map = new Map();
+            const menuMap = new Map();
             for (const item of response.result.data) {
-                if (!map.has(item.restaurant_id)) {
-                    map.set(item.restaurant_id, true);    // set any value to Map
+                if (!menuMap.has(item.restaurant_id)) {
+                    menuMap.set(item.restaurant_id, true);    // set any value to Map
                     result.push(item);
                 }
             }
 
-
-            for (var i = 0; i < result.length; i++) {
-                var id = result[i].restaurant_id;
-                var name = result[i].restaurant_name;
-                $('#listbox-groups').append('<li id="' + id + '" class="listbox-li"><a href="#" class="listbox-li-a" style="text-decoration: none">' + name + '</a></li>');
-            }
-            ;
 
             $("#listbox-groups li").on("click", function (event) {
 
@@ -91,6 +152,13 @@ $(document).ready(function () {
             });
 
         });
+
+
+
+
+
+
+
 
     });
 
@@ -148,6 +216,14 @@ $(document).ready(function () {
 
         });
     };
+
+
+
+
+
+
+
+
 
 
     // creating an ajax call when a specific resturant is clicked on to pull up the map
