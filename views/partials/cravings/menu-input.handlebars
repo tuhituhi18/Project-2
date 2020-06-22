@@ -41,20 +41,20 @@
     {{> cravings/side-nav}}
   </div>
 
-<div id="resList" class="container" style="text-align: center; display: flex">
+  <div id="resList" class="container" style="text-align: center; display: flex">
 
     <ul id="listbox-groups">
 
     </ul>
 
     <ul id="resMenu" class="container" style="text-align: center;"></ul>
-<div id="resList" class="container" style="text-align: center; display: flex">
+    <div id="resList" class="container" style="text-align: center; display: flex">
 
-    <ul id="listbox-groups">
+      <ul id="listbox-groups">
 
-    </ul>
+      </ul>
 
-    <ul id="resMenu" class="container" style="text-align: center;"></ul>
+      <ul id="resMenu" class="container" style="text-align: center;"></ul>
 
 
 
@@ -75,8 +75,8 @@
 
 <script>
 
-    document.getElementById("searchFoodBtn").addEventListener("click", function(){
-        
+  document.getElementById("searchFoodBtn").addEventListener("click", function () {
+
     document.getElementById("menu-input").classList.add("hide")
 
     document.getElementById("signUpContainer").classList.add("hide")
@@ -84,12 +84,12 @@
     document.getElementById("search-results").classList.remove("hide")
 
 
-})
-.then(response => {
-	console.log(response);
-})
-.catch(err => {
-	console.log(err);
-});
+  })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
 </script>

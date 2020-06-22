@@ -56,10 +56,11 @@ $(document).ready(function () {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
-                "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
-            }
-        }
+                "x-rapidapi-key": process.env.API_KEY
 
+            }
+
+        }
 
         $.ajax(settings).done(function (response) {
 
@@ -146,7 +147,6 @@ $(document).ready(function () {
                 }
             }
 
-
             $("#listbox-groups li span").on("click", function (event) {
 
 
@@ -154,9 +154,7 @@ $(document).ready(function () {
 
                 return false;
             });
-
         });
-
 
     });
 
@@ -174,39 +172,41 @@ $(document).ready(function () {
         $.ajax({
             method: "POST",
             url: "/api/menu",
-            data:{id:restaurantId}
+            data: { id: restaurantId }
         }).done(function (data) {
 
             let { menu_sections } = data.menus[0];
 
             for (var j = 0; j < menu_sections.length; j++) {
 
-            for (var k = 0; k < menu_sections[j].menu_items.length; k++) {
-                var menItem = menu_sections[j].menu_items[k];
-              //where render functions will occur
-                $('#resMenu').append(`
+                for (var k = 0; k < menu_sections[j].menu_items.length; k++) {
+                    var menItem = menu_sections[j].menu_items[k];
+                    //where render functions will occur
+                    $('#resMenu').append(`
                 <li class="listbox-li"> ${menItem.name}  
 
                     </li>`);
+                }
             }
-    }
-    console.log(data)
+            console.log(data)
         })
-        
-        
+
+
     };
 
+    restaurantDiv.append(map);
 
     $(document).on("click", ".save", function (event) {
         event.stopPropagation();
         console.log("I've been clicked");
+
         var favorite = {
             "async": true,
             "url": "/api/user_data",
             "method": "POST",
             "data": {
-                restaurantName: $(this).attr("data-restaurant") ,
-                foodName: $(this).attr("data-food") ,
+                restaurantName: $(this).attr("data-restaurant"),
+                foodName: $(this).attr("data-food"),
                 geoLat: $(this).attr("data-lat"),
                 geoLon: $(this).attr("data-lon"),
             }
@@ -214,14 +214,8 @@ $(document).ready(function () {
         $.ajax(favorite).done(function (response) {
             console.log(response.status)
         })
+
     });
-
-
-
-
-
-
-
 
 
 });
