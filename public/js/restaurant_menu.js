@@ -42,6 +42,8 @@ $(document).ready(function () {
         var searchMile = $("#userMileInput").val().trim();
         console.log(searchMile);
 
+        searchMile = parseInt(searchMile)
+
 
         var settings = {
             "async": true,
@@ -154,12 +156,6 @@ $(document).ready(function () {
         });
 
 
-
-
-
-
-
-
     });
 
 
@@ -183,45 +179,40 @@ $(document).ready(function () {
                 "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
             }
         }
-        $.ajax(settings).done(function (response) {
-            console.log(response);
+        $.ajax(settings).done(function ({ result }) {
+            let { menu_sections } = result.data[0].menus[0];
+            for (var j = 0; j < menu_sections.length; j++) {
 
-            var result = [];
-            var searchMenu = $("#userMenuInput").val().trim();
-
-            for (var i = 0; i < response.result.data.length; i++) {
-                for (var a = 0; a < response.result.data[i].menus.length; a++) {
-                    for (var j = 0; j < response.result.data[i].menus[a].menu_sections.length; j++) {
-                        for (var k = 0; k < response.result.data[i].menus[a].menu_sections[j].menu_items.length; k++) {
-                            var menItem = response.result.data[i].menus[a].menu_sections[j].menu_items[k]
-                            if (menItem.name.includes(searchMenu)) {
-                                result.push(menItem);
-                                console.log("we are here");
-                            }
-
-
-                        }
-
-
-                    }
+                for (var k = 0; k < menu_sections[j].menu_items.length; k++) {
+                    var menItem = menu_sections[j].menu_items[k];
+                    $('#resMenu').append('<li class="listbox-li">' + menItem.name + '</li>');
                 }
-
             }
-            console.log(result);
-            for (var i = 0; i < result.length; i++) {
-
-
-                var name = result[i].name;
-                $('#resMenu').append('<li class="listbox-li">' + name + '</li>');
-
-
-
-            }
-
-
         });
     };
 
+
+
+
+
+    $("#saveFavorite").on("click", function (event) {
+        event.preventDefault();
+        console.log("I've been clicked");
+        var favorite = {
+            "async": true,
+            "url": "/api/user_data",
+            "method": "POST",
+            "data": {
+                restaurantName: ,
+                foodName: "burger",
+                geoLat: latitude,
+                geoLon: longitude,
+            }
+        }
+        $.ajax(favorite).done(function (response) {
+            console.log(response.status)
+        })
+    });
 
 
 
