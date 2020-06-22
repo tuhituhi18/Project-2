@@ -87,7 +87,7 @@ $(document).ready(function () {
                     $('#listbox-groups').append(
                         `<li> <span id="${id}" class="listbox-li"><a href="#" class="listbox-li-a" style="text-decoration: none">${name}</a></span>
                         
-                    <button data-id="${id} data-restaurant = "${foodApp}" data-food= "${foodName}" data-lat= "${geoLat}" data-lon = "${geoLon}" class="save"> Save to Favorites</button>
+                    <button data-id="${id}" data-restaurant = "${foodApp}" data-food= "${searchMenu}" data-lat= "${geoLat}" data-lon = "${geoLon}" class="save"> Save to Favorites</button>
                     </li>`);
                     resArray.push([foodApp, geoLat, geoLon])
 
@@ -147,7 +147,7 @@ $(document).ready(function () {
             }
 
 
-            $("#listbox-groups li").on("click", function (event) {
+            $("#listbox-groups li span").on("click", function (event) {
 
 
                 menuAPI($(this).attr("id"));
@@ -186,18 +186,15 @@ $(document).ready(function () {
               //where render functions will occur
                 $('#resMenu').append(`
                 <li class="listbox-li"> ${menItem.name}  
-           
+
                     </li>`);
             }
-      }
-      console.log(data)
+    }
+    console.log(data)
         })
         
         
     };
-
-
-
 
 
     $(document).on("click", ".save", function (event) {
