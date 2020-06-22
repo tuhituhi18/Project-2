@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const axios = require("axios");
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -37,6 +38,25 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
+  app.post("/api/menu", (req, res)=>{
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": `https://us-restaurant-menus.p.rapidapi.com/restaurant/${req.body.id}/`,
+      "method": "GET",
+      "headers": {
+          "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
+          "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
+      }
+  }
+  axios(settings).then(function ({data}) {
+    console.log(data.result);
+    res.json(data.result.data[0]);
+
+  });
+  })
+
+  
   app.post("/api/user_data", (req, res) => {
     console.log(req.body)
     db.UserFavorite.create({
