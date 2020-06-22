@@ -2,25 +2,6 @@ var menu = require("restaurant_menu")
 var browserlocation = require("login")
 var map;
 
-// var map;
-
-//this will be an empty array filled with info from menu search
-
-const locations = [];
-
-// function initMap(locations) {
-
-//     // ["Hughies", 29.7982, -95.3833],
-//     // ["ban oui", 29.7341, -95.3997],
-//     ;
-
-// map = new google.maps.Map(document.getElementById("map"), {
-//     //if statement for window,userlocation 
-//     center: { lat: 29.76, lng: -95.36 },
-//     zoom: 10,
-//     mapTypeId: google.maps.MapTypeId.ROADMAP,
-
-// });
 
 
 var infowindow = new google.maps.InfoWindow();

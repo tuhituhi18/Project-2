@@ -32,7 +32,7 @@
 
 
 <!--new page-->
-<div class="holy-grail-grid hide" id="search-results">
+<class class="holy-grail-grid hide" id="search-results">
   <div class="holy-grail-header">
     <nav class="top-bar topbar-responsive">
       <div class="top-bar-title">
@@ -57,13 +57,14 @@
       </div>
     </nav>
   </div>
-  <div class="holy-grail-left">
+
+  <div id="resList" class="holy-grail-left">
     <h3>Nav</h3>
-    <ul>
-      <li><a href="#">Link 1</a></li>
-      <li><a href="#">Link 2</a></li>
-      <li><a href="#">Link 3</a></li>
+    <ul id="listbox-groups">
+
     </ul>
+
+    <ul id="resMenu" class="container" style="text-align: center;"></ul>
   </div>
 
   {{!-- <h3>{{wht was searched for }}</h3>
@@ -80,29 +81,18 @@
 
   <div class="holy-grail-middle">
 
-    <div id="map" style="height:50%"></div>
+    <div id="map" style="height:400px; width: 400px; align:center"></div>
   </div>
 
   <div class="holy-grail-footer">
     <h3>Footer</h3>
+    <h3>Content</h3>
+    <div id="map" style="height:400px; width: 400px"></div>
   </div>
+</class>
 
+<div class="holy-grail-footer">
+  <h3>Footer</h3>
 </div>
 
-
-<script>
-  document.getElementById("searchFoodBtn").addEventListener("click", function () {
-
-    document.getElementById("menu-input").classList.add("hide")
-
-    document.getElementById("signUpContainer").classList.add("hide")
-
-    document.getElementById("search-results").classList.remove("hide")
-
-    var menuInput = document.getElementById("userMenuInput").value
-    console.log(menuInput)
-
-    var mileInput = document.getElementById("userMileInput").value
-    console.log(mileInput)
-
-</script>
+</div>

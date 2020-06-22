@@ -3,8 +3,7 @@ $(document).ready(() => {
   const loginForm = $("form.login");
   const emailInput = $("input#email-input");
   const passwordInput = $("input#password-input");
-  var latitude;
-  var longitude;
+
 
 
   // When the form is submitted, we validate there's an email and password entered
@@ -39,22 +38,8 @@ $(document).ready(() => {
         console.log(err);
       });
   }
-  // method used to return the user's position, returns the latitude and logitude 
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  }
 
-  function showPosition(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
 
-  }
-
-  getLocation();
 });
 
 module.exports = login;
