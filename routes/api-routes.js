@@ -2,7 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -45,14 +45,14 @@ module.exports = function(app) {
       geoLat: req.body.geoLat,
       geoLon: req.body.geoLon,
     })
-    .then(()=>{
-      res.status(201);
-    })
-    .catch(err => {
-      console.log(err)
-      res.status(401).json(err);
-    });
-  
+      .then(() => {
+        res.status(201);
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(401).json(err);
+      });
+
   })
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", (req, res) => {
