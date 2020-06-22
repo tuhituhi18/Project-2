@@ -4,8 +4,12 @@ form.login {
 }
 
 body {
-  background-image: url("/assets/splashpage.jpg");
+  background-color: #96EBFF;
   font-family: 'Muli', sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right center;
+  /* background-blend-mode: darken; */
 }
 
 .navbar {
@@ -19,6 +23,19 @@ body {
   font-family: 'Muli', sans-serif;
 }
 
+.top-bar {
+  background-color: #f04828;
+}
+
+#top-bar-href, .siteName {
+  background-color: #f04828;
+}
+
+.siteName {
+    font-family: 'Notable', sans-serif;
+    color: white;
+}
+
 h1 {
   background-color: #f04828;
   padding-top: 25px;
@@ -27,6 +44,7 @@ h1 {
   font-family: 'Notable', sans-serif;
   font-size: 70px;
   margin-bottom: 0px;
+  --animate-duration: 0.5s;
 }
 
 #enterFood {
