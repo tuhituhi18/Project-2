@@ -56,8 +56,8 @@ $(document).ready(function () {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
-                "x-rapidapi-key": process.env.API_KEY
-
+                "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
+                // process.env.API_KEY
             }
 
         }
@@ -90,7 +90,8 @@ $(document).ready(function () {
                         
                     <button data-id="${id}" data-restaurant = "${foodApp}" data-food= "${searchMenu}" data-lat= "${geoLat}" data-lon = "${geoLon}" class="save"> Save to Favorites</button>
                     </li>`);
-                    resArray.push([foodApp, geoLat, geoLon])
+                    resArray.push([foodApp, searchMenu, geoLat, geoLon])
+                    console.log(resArray)
 
                 }
 
@@ -212,7 +213,7 @@ $(document).ready(function () {
             }
         }
         $.ajax(favorite).done(function (response) {
-            console.log(response.status)
+            console.log(favorite)
         })
 
     });

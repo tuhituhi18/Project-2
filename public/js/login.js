@@ -30,6 +30,7 @@ $(document).ready(() => {
       email: email,
       password: password
     })
+    // console.log(email,password)
       .then(() => {
         window.location.replace("/");
         // If there's an error, log the error
