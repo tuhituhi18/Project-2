@@ -34,40 +34,11 @@
 <!--new page-->
 <class class="holy-grail-grid hide" id="search-results">
   <div class="holy-grail-header">
-    <nav class="top-bar topbar-responsive">
-      <div class="top-bar-title">
-        <span data-responsive-toggle="topbar-responsive" data-hide-for="medium">
-          <button class="siteName" type="button">{{{member-name}}}</button>
-        </span>
-        <a class="topbar-responsive-logo" href="#"><strong>{{{name}}}</strong></a>
-      </div>
-      <div id="topbar-responsive" class="topbar-responsive-links">
-        <div class="top-bar-right">
-          <ul id="top-bar-href" class="menu simple vertical medium-horizontal">
-            <li><a href="/">Home</a></li>
-            {{#if isAuthenticated}}
-            <li><a href="#">My Favorites</a></li>
-
-            <li><a class="navbar-brand" href="/logout">Logout</a>
-              {{else}}
-            <li><a href="/signup">Sign-Up/Login</a></li>
-            {{/if}}
-            </li>
-          </ul>
-        </div>
-      </div>
-  </div>
-  </nav>
+    {{> cravings/top-bar}}
   </div>
 
   <div id="resList" class="holy-grail-left">
-    <h3>Nav</h3>
-    <ul id="listbox-groups">
-      {{!-- <li>{{> search-results}}</li> --}}
-    </ul>
-
-    <ul id="resMenu" class="container" style="text-align: center;"></ul>
-
+    {{> cravings/side-nav}}
   </div>
 
   <div id="resList" class="container" style="text-align: center; display: flex">
@@ -87,20 +58,17 @@
 
 
 
-      <div class="holy-grail-middle">
+  <div id="map-view" class="holy-grail-middle">
+    {{> cravings/map}}
+  </div>
 
-        <div id="map" style="height:400px; width: 400px; align:center"></div>
-      </div>
-
-      <div class="holy-grail-footer">
-        <h3>Footer</h3>
-        <h3>Content</h3>
-        <div id="map" style="height:400px; width: 400px"></div>
-      </div>
+  {{!-- <div class="holy-grail-footer">
+    <div id="map" style="height:400px; width: 400px"></div>
+  </div> --}}
 </class>
 
 <div class="holy-grail-footer">
-  <h3>Footer</h3>
+  {{> cravings/footer}}
 </div>
 
 </div>
