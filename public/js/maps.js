@@ -2,6 +2,7 @@
 // var map;
 
 
+<<<<<<< HEAD
 // function initMap(locations) {
 
 //     // const locations = [
@@ -9,6 +10,15 @@
 //     //     ["Hughies", 29.7982, -95.3833],
 //     //     ["ban oui", 29.7341, -95.3997],
 //     // ];
+=======
+// function initMap() {
+
+//     const locations = [
+//         //this will be an empty array filled with info from menu search
+//         ["Hughies", 29.7982, -95.3833],
+//         ["ban oui", 29.7341, -95.3997],
+//     ];
+>>>>>>> 4a1c87370743e348fb7f9fed6fad4fa4de93f616
 
 //     map = new google.maps.Map(document.getElementById("map"), {
 //         //if statement for window,userlocation 
@@ -36,6 +46,11 @@
 //             }
 //         })(marker, i));
 //     }
+<<<<<<< HEAD
 
 // }
 
+=======
+
+// }
+>>>>>>> 4a1c87370743e348fb7f9fed6fad4fa4de93f616
