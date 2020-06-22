@@ -47,7 +47,7 @@ $(document).ready(function () {
             "async": true,
             "crossDomain": true,
             //"url": `https://us-restaurant-menus.p.rapidapi.com/menuitems/search/geo?distance=${searchMile}&lat=${latitude}&page=50&q=${searchMenu}&lon=${longitude}`,
-            "url": `https://us-restaurant-menus.p.rapidapi.com/restaurants/search/geo?page=1&lon=${longitude}&lat=${latitude}&distance=${searchMile}`,
+            "url": `https://us-restaurant-menus.p.rapidapi.com/restaurants/search/geo?page=10&lon=${longitude}&lat=${latitude}&distance=${searchMile}`,
             // "url": `https://us-restaurant-menus.p.rapidapi.com/menuitems/search?distance=${searchMile}&lat=${latitude}&page=50&q=${searchMenu}&lon=${longitude}`,
 
 
@@ -166,12 +166,13 @@ $(document).ready(function () {
     $("#searchMenuBtn").on("click", function (event) {
         event.preventDefault();
         console.log("I've been clicked");
-        $("#resMenu").empty();
+
         //search menu should equal to the value entered by the user from the input field with an id of user userMenuInput
         var searchMenu = $("#userMenuInput").val().trim();
         console.log(searchMenu);
     });
     function menuAPI(restaurantId) {
+        $("#resMenu").empty();
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -188,23 +189,27 @@ $(document).ready(function () {
             var result = [];
             var searchMenu = $("#userMenuInput").val().trim();
 
-            for (var i = 0; i < response.menu.length; i++) {
-                for (var j = 0; j < response.menu[i].menu_sections.length; j++) {
-                    for (var k = 0; k < response.menu[i].menu_sections[j].menu_items.length; k++) {
-                        var menItem = response.menu[i].menu_sections[j].menu_items[k]
-                        if (menItem.name.includes(searchMenu)) {
-                            result.append(menItem);
+            for (var i = 0; i < response.result.data.length; i++) {
+                for (var a = 0; a < response.result.data[i].menus.length; a++) {
+                    for (var j = 0; j < response.result.data[i].menus[a].menu_sections.length; j++) {
+                        for (var k = 0; k < response.result.data[i].menus[a].menu_sections[j].menu_items.length; k++) {
+                            var menItem = response.result.data[i].menus[a].menu_sections[j].menu_items[k]
+                            if (menItem.name.includes(searchMenu)) {
+                                result.push(menItem);
+                                console.log("we are here");
+                            }
+
 
                         }
 
 
                     }
-
-
                 }
 
             }
+            console.log(result);
             for (var i = 0; i < result.length; i++) {
+
 
                 var name = result[i].name;
                 $('#resMenu').append('<li class="listbox-li">' + name + '</li>');
