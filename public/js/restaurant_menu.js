@@ -84,9 +84,11 @@ $(document).ready(function () {
 
                     var id = response.result.data[i].restaurant_id;
                     var name = response.result.data[i].restaurant_name;
-                    $('#listbox-groups').append('<li id="' + id + '" class="listbox-li"><a href="#" class="listbox-li-a" style="text-decoration: none">' + name + '</a></li>');
-
-
+                    $('#listbox-groups').append(
+                        `<li> <span id="${id}" class="listbox-li"><a href="#" class="listbox-li-a" style="text-decoration: none">${name}</a></span>
+                        
+                    <button data-id="${id}" data-restaurant = "${foodApp}" data-food= "${searchMenu}" data-lat= "${geoLat}" data-lon = "${geoLon}" class="save"> Save to Favorites</button>
+                    </li>`);
                     resArray.push([foodApp, geoLat, geoLon])
 
                 }
@@ -145,7 +147,7 @@ $(document).ready(function () {
             }
 
 
-            $("#listbox-groups li").on("click", function (event) {
+            $("#listbox-groups li span").on("click", function (event) {
 
 
                 menuAPI($(this).attr("id"));
@@ -159,54 +161,54 @@ $(document).ready(function () {
     });
 
 
-    $("#searchMenuBtn").on("click", function (event) {
-        event.preventDefault();
-        console.log("I've been clicked");
+    // $("#searchMenuBtn").on("click", function (event) {
+    //     event.preventDefault();
+    //     console.log("I've been clicked");
 
-        //search menu should equal to the value entered by the user from the input field with an id of user userMenuInput
-        var searchMenu = $("#userMenuInput").val().trim();
-        console.log(searchMenu);
-    });
+    //     //search menu should equal to the value entered by the user from te input field with an id of user userMenuInput
+    //     var searchMenu = $("#userMenuInput").val().trim();
+    //     console.log(searchMenu);
+    // });
     function menuAPI(restaurantId) {
         $("#resMenu").empty();
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": `https://us-restaurant-menus.p.rapidapi.com/restaurant/${restaurantId}/`,
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
-                "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
-            }
-        }
-        $.ajax(settings).done(function ({ result }) {
-            let { menu_sections } = result.data[0].menus[0];
+        $.ajax({
+            method: "POST",
+            url: "/api/menu",
+            data:{id:restaurantId}
+        }).done(function (data) {
+
+            let { menu_sections } = data.menus[0];
+
             for (var j = 0; j < menu_sections.length; j++) {
 
-                for (var k = 0; k < menu_sections[j].menu_items.length; k++) {
-                    var menItem = menu_sections[j].menu_items[k];
-                    $('#resMenu').append('<li class="listbox-li">' + menItem.name + '</li>');
-                }
+            for (var k = 0; k < menu_sections[j].menu_items.length; k++) {
+                var menItem = menu_sections[j].menu_items[k];
+              //where render functions will occur
+                $('#resMenu').append(`
+                <li class="listbox-li"> ${menItem.name}  
+
+                    </li>`);
             }
-        });
+    }
+    console.log(data)
+        })
+        
+        
     };
 
 
-
-
-
-    $("#saveFavorite").on("click", function (event) {
-        event.preventDefault();
+    $(document).on("click", ".save", function (event) {
+        event.stopPropagation();
         console.log("I've been clicked");
         var favorite = {
             "async": true,
             "url": "/api/user_data",
             "method": "POST",
             "data": {
-                restaurantName: ,
-                foodName: "burger",
-                geoLat: latitude,
-                geoLon: longitude,
+                restaurantName: $(this).attr("data-restaurant") ,
+                foodName: $(this).attr("data-food") ,
+                geoLat: $(this).attr("data-lat"),
+                geoLon: $(this).attr("data-lon"),
             }
         }
         $.ajax(favorite).done(function (response) {
@@ -222,5 +224,4 @@ $(document).ready(function () {
 
 
 
-    // creating an ajax call when a specific resturant is clicked on to pull up the map
 });
