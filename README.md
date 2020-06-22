@@ -14,7 +14,10 @@ Then I will satisfy my cravings!
 
 Install:
 
-Be sure to create a new file called .env on the same level as server.js With code looking like 'PASSWORD=<your SQL password>'
+Be sure to create a new file called .env on the same level as server.js With code looking like 'PASSWORD=<your SQL password>' 
+API_KEY = "your api key for XYZ form rapid api"
+
+
 
 Click on the link below:
 --link---
