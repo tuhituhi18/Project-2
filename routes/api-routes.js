@@ -36,7 +36,7 @@ module.exports = function (app) {
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
-    req.session.destory();
+    req.session.destroy();
     res.redirect("/");
   });
 
@@ -48,7 +48,7 @@ module.exports = function (app) {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
-        "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
+        "x-rapidapi-key": process.env.API_KEY
       }
     }
     axios(settings).then(function ({ data }) {
