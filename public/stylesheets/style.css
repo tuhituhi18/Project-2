@@ -4,24 +4,28 @@ form.login {
 }
 
 body {
-  background-image: url(https://image.freepik.com/free-photo/paper-texture-with-pattern_107441-49.jpg);
-  font-family: cursive;
+  background-image: url("/assets/splashpage.jpg");
+  font-family: 'Muli', sans-serif;
 }
 
 .navbar {
-  background: url(https://superdevresources.com/wp-content/uploads/2014/11/black-metal-grill-texture-vector.jpg);
+  background-color: #f04828;
 }
 
 .navText {
-  color: lightgray;
+  background-color: #f04828;
+  color: white;
+  margin-bottom: 0px;
+  font-family: 'Muli', sans-serif;
 }
 
 h1 {
-  background: url(https://superdevresources.com/wp-content/uploads/2014/11/black-metal-grill-texture-vector.jpg);
+  background-color: #f04828;
   padding-top: 25px;
   padding-bottom: 25px;
-  color: lightgray;
-  font-family: cursive;
+  color: white;
+  font-family: 'Notable', sans-serif;
+  font-size: 70px;
   margin-bottom: 0px;
 }
 
@@ -31,24 +35,23 @@ h1 {
 }
 
 #userMenuInput {
-  width: 500px;
+  width: 200px;
 }
 
 #searchMenuBtn {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 button {
-  border: outset;
-  background: black;
-  color: lightgray;
-  font-family: cursive;
+  background: #8e8875;
+  color: white;
+  font-family: 'Muli', sans-serif;
   padding: 5px;
 }
 
 #signUp {
-  background: black;
-  color: lightgray;
+  background: #8e8875;;
+  color: white;
 }
 
 .hide{
