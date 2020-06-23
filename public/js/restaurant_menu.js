@@ -179,7 +179,6 @@ $(document).ready(function () {
                     //where render functions will occur
                     $('#resMenu').append(`
                 <li class="listbox-li"> ${menItem.name}  
-
                     </li>`);
                 }
             }
