@@ -26,6 +26,7 @@ body {
 
 .top-bar {
   background-color: #f04828;
+  color: lightgray;
 }
 
 #top-bar-href, .siteName {
@@ -88,9 +89,13 @@ ul {
 } */
 
 .holy-grail-left {
-  background-color: lightsalmon;
+  background-color: whitesmoke;
+  opacity: 70%;
 }
 
+#resMenu{
+  color: whitesmoke;
+}
 
 #resList {
   flex-flow: column;
