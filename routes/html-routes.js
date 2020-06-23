@@ -15,7 +15,7 @@ module.exports = function (app) {
     if (req.user) {
       res.redirect("/");
     }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    res.render("signup", { layout: "main" });
   });
 
   app.get("/login", (req, res) => {
@@ -23,7 +23,7 @@ module.exports = function (app) {
     if (req.user) {
       res.redirect("/");
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.render("login-logout", { layout: "main" });
   });
 
   app.get("/results/:food/:distance", (req, res) => {

@@ -1,10 +1,7 @@
-
 $(document).ready(function () {
 
     var latitude;
     var longitude;
-
-
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -24,8 +21,6 @@ $(document).ready(function () {
 
 
     $("#searchFoodBtn").on("click", function (event) {
-
-
         document.getElementById("menu-input").classList.add("hide")
 
         document.getElementById("signUpContainer").classList.add("hide")
@@ -33,7 +28,7 @@ $(document).ready(function () {
         document.getElementById("search-results").classList.remove("hide")
 
         event.preventDefault();
-        console.log("I've been clicked");
+        // console.log("I've been clicked");
         $("#listbox-groups").empty();
         //search menu should equal to the value entered by the user from the input field with an id of userMenuInput
         var searchMenu = $("#userMenuInput").val().trim();
@@ -56,8 +51,7 @@ $(document).ready(function () {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
-                "x-rapidapi-key": process.env.API_KEY
-
+                "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
             }
 
         }
@@ -90,7 +84,8 @@ $(document).ready(function () {
                         
                     <button data-id="${id}" data-restaurant = "${foodApp}" data-food= "${searchMenu}" data-lat= "${geoLat}" data-lon = "${geoLon}" class="save"> Save to Favorites</button>
                     </li>`);
-                    resArray.push([foodApp, geoLat, geoLon])
+                    resArray.push([foodApp, searchMenu, geoLat, geoLon])
+                    console.log(resArray)
 
                 }
 
@@ -184,7 +179,6 @@ $(document).ready(function () {
                     //where render functions will occur
                     $('#resMenu').append(`
                 <li class="listbox-li"> ${menItem.name}  
-
                     </li>`);
                 }
             }
@@ -194,10 +188,10 @@ $(document).ready(function () {
 
     };
 
-    restaurantDiv.append(map);
+    // restaurantDiv.append(map);
 
-    $(document).on("click", ".save", function (event) {
-        event.stopPropagation();
+    $("html").on("click", ".save", function (event) {
+        // event.stopPropagation();
         console.log("I've been clicked");
 
         var favorite = {
@@ -212,7 +206,7 @@ $(document).ready(function () {
             }
         }
         $.ajax(favorite).done(function (response) {
-            console.log(response.status)
+            console.log(favorite)
         })
 
     });

@@ -1,4 +1,4 @@
-<div id="menu-input" class="menu align-center" class="container" style="text-align: center;">
+<<div id="menu-input" class="menu align-center" class="container" style="text-align: center;">
 
   <form>
     <!--Search Bar title-->
@@ -22,32 +22,25 @@
     <br>
   </form>
 
-</div>
-
-<div style="text-align: center; margin-top: 50px" id="signUpContainer">
-  <a href="/signup"> <button id="signUp" type="button">Sign-Up to save your favorites!</button></a>
-</div>
-
-
-
-
-<!--new page-->
-<class class="holy-grail-grid hide" id="search-results">
-  <div class="holy-grail-header">
-    {{> cravings/top-bar}}
   </div>
 
-  <div id="resList" class="holy-grail-left">
-    {{> cravings/side-nav}}
+  <div style="text-align: center; margin-top: 50px" id="signUpContainer">
+    <a href="/signup"> <button id="signUp" type="button">Sign-Up to save your favorites!</button></a>
   </div>
 
-  <div id="resList" class="container" style="text-align: center; display: flex">
 
-    <ul id="listbox-groups">
 
-    </ul>
 
-    <ul id="resMenu" class="container" style="text-align: center;"></ul>
+  <!--new page-->
+  <class class="holy-grail-grid hide" id="search-results">
+    <div class="holy-grail-header">
+      {{> cravings/top-bar}}
+    </div>
+
+    <div id="resList" class="holy-grail-left">
+      {{> cravings/side-nav}}
+    </div>
+
     <div id="resList" class="container" style="text-align: center; display: flex">
 
       <ul id="listbox-groups">
@@ -55,64 +48,75 @@
       </ul>
 
       <ul id="resMenu" class="container" style="text-align: center;"></ul>
+      <div id="resList" class="container" style="text-align: center; display: flex">
+
+        <ul id="listbox-groups">
+
+        </ul>
+
+        <ul id="resMenu" class="container" style="text-align: center;"></ul>
 
 
 
-      <div id="map-view" class="holy-grail-middle">
-        {{> cravings/map}}
-      </div>
+        {{!-- <div id="map-view" class="holy-grail-middle">
+    {{> cravings/map}}
+  </div> --}}
 
-      {{!-- <div class="holy-grail-footer">
+        {{!-- <div class="holy-grail-footer">
     <div id="map" style="height:400px; width: 400px"></div>
   </div> --}}
-</class>
+  </class>
 
-<div class="holy-grail-footer">
-  {{> cravings/footer}}
-</div>
-
-</div>
-
-<script>
-
-  var latitude;
-  var longitude;
+  <div id="map-view" class="holy-grail-middle">
+    {{> cravings/map}}
+  </div>
 
 
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-      console.log("Geolocation is not supported by this browser.");
+
+
+  </div>
+
+
+  <script>
+
+    var latitude;
+    var longitude;
+
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
     }
-  }
 
-  function showPosition(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    console.log(position);
+    function showPosition(position) {
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+      console.log(position);
 
-  }
+    }
 
-  getLocation();
-
+    getLocation();
 
 
 
-  document.getElementById("searchFoodBtn").addEventListener("click", function () {
 
-    document.getElementById("menu-input").classList.add("hide")
+    document.getElementById("searchFoodBtn").addEventListener("click", function () {
 
-    document.getElementById("signUpContainer").classList.add("hide")
+      document.getElementById("menu-input").classList.add("hide")
 
-    document.getElementById("search-results").classList.remove("hide")
+      document.getElementById("signUpContainer").classList.add("hide")
 
-    var foodItem = document.getElementById("userMenuInput").value
+      document.getElementById("search-results").classList.remove("hide")
 
-    var disMile = document.getElementById("userMileInput").value
-    window.location.href = "results/" + foodItem + "/" + disMile + `?latitude=${latitude}&longitude=${longitude}`
+      var foodItem = document.getElementById("userMenuInput").value
 
-  })
+      var disMile = document.getElementById("userMileInput").value
+      window.location.href = "results/" + foodItem + "/" + disMile + `?latitude=${latitude}&longitude=${longitude}`
+
+    })
 
 
 
@@ -126,4 +130,4 @@
    //   console.log(err);
   //  });
 
-</script>
+  </script>

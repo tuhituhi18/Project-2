@@ -26,11 +26,17 @@ $(document).ready(() => {
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
   function loginUser(email, password) {
-    $.post("/api/login", {
-      email: email,
-      password: password
-    })
-      .then(() => {
+    $.ajax(
+      {
+        method: "POST",
+        url: "/api/login",
+        data: {
+          email: email,
+          password: password
+        }
+      })
+
+      .done(() => {
         window.location.replace("/");
         // If there's an error, log the error
       })
@@ -42,4 +48,4 @@ $(document).ready(() => {
 
 });
 
-//module.exports = login;
+// module.exports = login;

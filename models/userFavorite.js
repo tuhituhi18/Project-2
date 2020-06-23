@@ -17,6 +17,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,  
         }
 
+
     });
         //bring in values from retaruant menu.js - foodApp, foodName, geoLat, geoLon
 

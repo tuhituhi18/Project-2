@@ -13,10 +13,15 @@ module.exports = function (app) {
     res.json({
       email: req.user.email,
       id: req.user.id
-    });
-    console.log(res.user);
+    })
   });
 
+  app.get("/api/users", (req, res) => {
+    db.User.findAll({})
+      .then(dbUser => {
+        res.json(dbUser);
+      })
+  })
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -40,7 +45,8 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
-  app.get("/api/menu", (req, res) => {
+  app.post("/api/menu", (req, res) => {
+    console.log("hello", req.user)
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -60,12 +66,13 @@ module.exports = function (app) {
 
 
   app.post("/api/user_data", (req, res) => {
-    console.log(req.body)
+    console.log("hello world", req.body)
     db.UserFavorite.create({
       restaurantName: req.body.restaurantName,
       foodName: req.body.foodName,
       geoLat: req.body.geoLat,
       geoLon: req.body.geoLon,
+      UserId: req.user.id
     })
       .then(() => {
         res.status(201);
