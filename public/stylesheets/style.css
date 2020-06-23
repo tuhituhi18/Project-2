@@ -52,6 +52,7 @@ h1 {
 .enter {
   text-decoration-line: underline;
   font-family: 'Notable', sans-serif;
+  color: whitesmoke;
 }
 
 #userMenuInput {
