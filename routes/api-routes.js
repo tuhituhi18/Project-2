@@ -46,6 +46,7 @@ module.exports = function (app) {
   });
 
   app.post("/api/menu", (req, res) => {
+    console.log("hello", req.user)
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -65,17 +66,16 @@ module.exports = function (app) {
 
 
   app.post("/api/user_data", (req, res) => {
-    console.log(req.body)
+    console.log("hello world", req.body)
     db.UserFavorite.create({
       restaurantName: req.body.restaurantName,
       foodName: req.body.foodName,
       geoLat: req.body.geoLat,
       geoLon: req.body.geoLon,
+      UserId: req.user.id
     })
-      .then((response) => {
-        console.log("after db call", response)
+      .then(() => {
         res.status(201);
-
       })
       .catch(err => {
         console.log(err)

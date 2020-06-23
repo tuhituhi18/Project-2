@@ -1,10 +1,7 @@
-
 $(document).ready(function () {
 
     var latitude;
     var longitude;
-
-
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -24,8 +21,6 @@ $(document).ready(function () {
 
 
     $("#searchFoodBtn").on("click", function (event) {
-
-
         document.getElementById("menu-input").classList.add("hide")
 
         document.getElementById("signUpContainer").classList.add("hide")
@@ -57,7 +52,6 @@ $(document).ready(function () {
             "headers": {
                 "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
                 "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
-                // process.env.API_KEY
             }
 
         }
@@ -185,7 +179,6 @@ $(document).ready(function () {
                     //where render functions will occur
                     $('#resMenu').append(`
                 <li class="listbox-li"> ${menItem.name}  
-
                     </li>`);
                 }
             }
