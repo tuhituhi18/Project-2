@@ -3,8 +3,7 @@ $(document).ready(() => {
   const loginForm = $("form.login");
   const emailInput = $("input#email-input");
   const passwordInput = $("input#password-input");
-  var latitude;
-  var longitude;
+
 
 
   // When the form is submitted, we validate there's an email and password entered
@@ -27,11 +26,17 @@ $(document).ready(() => {
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
   function loginUser(email, password) {
-    $.post("/api/login", {
-      email: email,
-      password: password
-    })
-      .then(() => {
+    $.ajax(
+      {
+        method: "POST",
+        url: "/api/login",
+        data: {
+          email: email,
+          password: password
+        }
+      })
+
+      .done(() => {
         window.location.replace("/");
         // If there's an error, log the error
       })
@@ -40,19 +45,7 @@ $(document).ready(() => {
       });
   }
 
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  }
 
-  function showPosition(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-
-  }
-
-  getLocation();
 });
+
+// module.exports = login;

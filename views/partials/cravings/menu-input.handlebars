@@ -1,0 +1,101 @@
+<<div id="menu-input" class="menu align-center" class="container" style="text-align: center;">
+
+  <form>
+    <!--Search Bar title-->
+    <label for="mname">Enter Food</label>
+    <br>
+    <br>
+    <!--Search Bar-->
+    <input type="text" id="userMenuInput" name="mname" placeholder="example: Filet Mignon">
+    <br>
+    <br>
+    <label for="mname">Enter Distance</label>
+    <br>
+    <br>
+    <!--Search Bar-->
+    <input type="text" id="userMileInput" name="mname" placeholder="example: 5 (miles) ">
+    <br>
+    <br>
+    <!--Search Btn-->
+    <button id="searchFoodBtn" type="button" class="btn btn-primary">Lets Eat</button>
+    <br>
+    <br>
+  </form>
+
+</div>
+
+<div style="text-align: center; margin-top: 50px" id="signUpContainer">
+  <a href="/signup"> <button id="signUp" type="button">Sign-Up to save your favorites!</button></a>
+</div>
+
+
+
+
+<!--new page-->
+<class class="holy-grail-grid hide" id="search-results">
+  <div class="holy-grail-header">
+    {{> cravings/top-bar}}
+  </div>
+
+  <div id="resList" class="holy-grail-left">
+    {{> cravings/side-nav}}
+  </div>
+
+  <div id="resList" class="container" style="text-align: center; display: flex">
+
+    <ul id="listbox-groups">
+
+    </ul>
+
+    <ul id="resMenu" class="container" style="text-align: center;"></ul>
+    <div id="resList" class="container" style="text-align: center; display: flex">
+
+      <ul id="listbox-groups">
+
+      </ul>
+
+      <ul id="resMenu" class="container" style="text-align: center;"></ul>
+
+
+
+  {{!-- <div id="map-view" class="holy-grail-middle">
+    {{> cravings/map}}
+  </div> --}}
+
+  {{!-- <div class="holy-grail-footer">
+    <div id="map" style="height:400px; width: 400px"></div>
+  </div> --}}
+</class>
+
+  <div id="map-view" class="holy-grail-middle">
+    {{> cravings/map}}
+  </div>
+
+
+
+
+</div>
+
+
+<script>
+
+  document.getElementById("searchFoodBtn").addEventListener("click", function () {
+
+    document.getElementById("menu-input").classList.add("hide")
+
+    document.getElementById("signUpContainer").classList.add("hide")
+
+    document.getElementById("search-results").classList.remove("hide")
+
+
+  })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+</script>
+
+
