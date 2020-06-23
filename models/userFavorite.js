@@ -15,7 +15,13 @@ module.exports = function(sequelize, DataTypes) {
         geoLon:{
             type: DataTypes.INTEGER,
             allowNull: false,  
+        },
+        UserId:{
+            type: DataTypes.INTEGER,
+            allowNull: true,
+  
         }
+        
 
     });
         //bring in values from retaruant menu.js - foodApp, foodName, geoLat, geoLon
@@ -26,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
         // A User Favorite can't be created without a User due to the foreign key constraint
         UserFavorite.belongsTo(models.User, {
             foreignKey: {
-                allowNull: false
+                allowNull: true
             }
         });
     };

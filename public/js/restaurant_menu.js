@@ -33,7 +33,7 @@ $(document).ready(function () {
         document.getElementById("search-results").classList.remove("hide")
 
         event.preventDefault();
-        console.log("I've been clicked");
+        // console.log("I've been clicked");
         $("#listbox-groups").empty();
         //search menu should equal to the value entered by the user from the input field with an id of userMenuInput
         var searchMenu = $("#userMenuInput").val().trim();
@@ -195,10 +195,10 @@ $(document).ready(function () {
 
     };
 
-    restaurantDiv.append(map);
+    // restaurantDiv.append(map);
 
-    $(document).on("click", ".save", function (event) {
-        event.stopPropagation();
+    $("html").on("click", ".save", function (event) {
+        // event.stopPropagation();
         console.log("I've been clicked");
 
         var favorite = {

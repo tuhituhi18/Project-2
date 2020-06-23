@@ -72,8 +72,10 @@ module.exports = function (app) {
       geoLat: req.body.geoLat,
       geoLon: req.body.geoLon,
     })
-      .then(() => {
+      .then((response) => {
+        console.log("after db call", response)
         res.status(201);
+
       })
       .catch(err => {
         console.log(err)

@@ -7,6 +7,14 @@ $(document).ready(() => {
 
 });
 
+$('#favbox-groups').append(
+  `<li> <span id="${id}" class="favbox-li"><a href="#" class="favbox-li-a" style="text-decoration: none">${name}</a></span>
+  
+<button data-id="${id}" data-restaurant = "${foodApp}" data-food= "${searchMenu}" data-lat= "${geoLat}" data-lon = "${geoLon}" class="save"> Save to Favorites</button>
+</li>`);
+resArray.push([foodApp, searchMenu, geoLat, geoLon])
+console.log(resArray)
+
 //     $(document).on("click", ".save", function (event) {
 //   event.stopPropagation();
 //   console.log("I've been clicked");
