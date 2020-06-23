@@ -84,21 +84,21 @@ module.exports = function (app) {
 
   })
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", (req, res) => {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
+  // app.get("/api/user_data", (req, res) => {
+  //   if (!req.user) {
+  //     // The user is not logged in, send back an empty object
+  //     res.json({});
+  //   } else {
 
-      db.UserFavorite.findOne({
-        where:{
-          UserId: req.params.id
-        },
-        include: [db.UserFavorite]
-      }).then(function(dbUserFavorite){
-        res.json(dbUserFavorite)
-      });
+  //     db.UserFavorite.findOne({
+  //       where:{
+  //         UserId: req.params.id
+  //       },
+  //       include: [db.UserFavorite]
+  //     }).then(function(dbUserFavorite){
+  //       res.json(dbUserFavorite)
+  //     });
 
-    }
-  });
+  //   }
+  // });
 };
