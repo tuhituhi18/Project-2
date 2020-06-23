@@ -54,7 +54,7 @@ module.exports = function (app) {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
-        "x-rapidapi-key": "230f5fd612msh4e36283b5d68e1bp179416jsnd53a23333929"
+        "x-rapidapi-key": process.env.API_KEY
       }
     }
     axios(settings).then(function ({ data }) {
@@ -66,7 +66,7 @@ module.exports = function (app) {
 
 
   app.post("/api/user_data", (req, res) => {
-    console.log("hello world", req.body)
+    console.log(req.body)
     db.UserFavorite.create({
       restaurantName: req.body.restaurantName,
       foodName: req.body.foodName,
@@ -89,14 +89,16 @@ module.exports = function (app) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        // restaurantName: res.body.restaurantName,
-        // foodName: res.body.foodName,
-        // geoLat: res.body.geoLat,
-        // geoLon: res.body.geoLon,
+
+      db.UserFavorite.findOne({
+        where:{
+          UserId: req.params.id
+        },
+        include: [db.UserFavorite]
+      }).then(function(dbUserFavorite){
+        res.json(dbUserFavorite)
       });
+
     }
   });
 };
