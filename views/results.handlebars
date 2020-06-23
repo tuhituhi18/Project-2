@@ -1,0 +1,30 @@
+<h1>Restaurants</h1>
+{{>cravings/top-bar}}
+<div class="">
+    <div class="grid-x">
+        <div class="cell medium-3">
+            {{#let restaurants = data}}
+            {{>cravings/restaurantlist restaurants }}
+            {{/let}}
+        </div>
+        <div class="cell medium-9">
+
+            {{>cravings/map}}
+
+
+        </div>
+
+    </div>
+    <Ul class="geoInfo">
+        {{#each data}}
+        <li class="mapResult" data-name="{{restaurant_name}}" data-longitude="{{geo.lon}}" data-latitude="{{geo.lat}}">
+
+
+        </li>
+        {{/each}}
+
+    </Ul>
+
+
+
+</div>

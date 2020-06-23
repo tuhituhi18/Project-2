@@ -1,5 +1,6 @@
 // Requiring necessary npm packages
 const express = require("express");
+
 // Creating express app
 const app = express();
 const session = require("express-session");
@@ -28,7 +29,9 @@ app.use(passport.session());
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+
+
+app.engine("handlebars", exphbs({ defaultLayout: "main", helpers: { toJSON: object => JSON.stringify(object) } }));
 app.set("view engine", "handlebars");
 
 // Requiring our routes

@@ -1,0 +1,29 @@
+<table class="hover">
+    {{#each this}}
+    <tr>
+        <td> <button class="openMenu" data-id{{id}}>{{restaurant_name}}</button></td>
+
+    </tr>
+    {{/each}}
+</table>
+<script>
+
+    document.querySelectorAll("openMenu").forEach(button => {
+
+        button.addEventListener("click", event => {
+
+            event.preventDefault();
+
+            fetch("/api/menu?id=" + button.dataset.id)
+
+                .then(res => res.json())
+                .then(restaurant => console.log)
+        })
+
+    })
+
+
+
+
+
+</script>

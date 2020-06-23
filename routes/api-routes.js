@@ -40,11 +40,11 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
-  app.post("/api/menu", (req, res) => {
+  app.get("/api/menu", (req, res) => {
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": `https://us-restaurant-menus.p.rapidapi.com/restaurant/${req.body.id}/`,
+      "url": `https://us-restaurant-menus.p.rapidapi.com/restaurant/${req.query.id}/`,
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",

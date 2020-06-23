@@ -5,11 +5,12 @@ form.login {
 
 body {
   /* background-image: url("/assets/shutterstock_1030504795.jpg"); */
-  background-color: #96EBFF;
+  background-image: url("/assets/shutterstock_299077844.jpg");
+  background-position: center center;
+  background-size: cover;
   font-family: 'Muli', sans-serif;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: right center;
   /* background-blend-mode: darken; */
 }
 

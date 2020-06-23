@@ -58,11 +58,11 @@
 
 
 
-  <div id="map-view" class="holy-grail-middle">
-    {{> cravings/map}}
-  </div>
+      <div id="map-view" class="holy-grail-middle">
+        {{> cravings/map}}
+      </div>
 
-  {{!-- <div class="holy-grail-footer">
+      {{!-- <div class="holy-grail-footer">
     <div id="map" style="height:400px; width: 400px"></div>
   </div> --}}
 </class>
@@ -75,6 +75,30 @@
 
 <script>
 
+  var latitude;
+  var longitude;
+
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+
+  function showPosition(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    console.log(position);
+
+  }
+
+  getLocation();
+
+
+
+
   document.getElementById("searchFoodBtn").addEventListener("click", function () {
 
     document.getElementById("menu-input").classList.add("hide")
@@ -83,13 +107,23 @@
 
     document.getElementById("search-results").classList.remove("hide")
 
+    var foodItem = document.getElementById("userMenuInput").value
+
+    var disMile = document.getElementById("userMileInput").value
+    window.location.href = "results/" + foodItem + "/" + disMile + `?latitude=${latitude}&longitude=${longitude}`
 
   })
-    .then(response => {
-      console.log(response);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+
+
+
+
+
+
+  //  .then(response => {
+   //   console.log(response);
+   // })
+   // .catch(err => {
+   //   console.log(err);
+  //  });
 
 </script>
