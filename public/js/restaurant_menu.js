@@ -211,24 +211,24 @@ $(document).ready(function () {
 
     });
 
-    function initializeFavorites(){
-        $("#resList").empty()
-        var favorite = [];
-        for (var i=0; i< UserFavorite.length; i++){
-            favorite.push(UserFavorite[i])
-        }
-        $("#resLis").prepend(favorite);
-    }
+//     function initializeFavorites(){
+//         $("#resList").empty()
+//         var favorite = [];
+//         for (var i=0; i< UserFavorite.length; i++){
+//             favorite.push(UserFavorite[i])
+//         }
+//         $("#resLis").prepend(favorite);
+//     }
 
-    $("html").on("click", ".members", function (event) {
-        event.preventDefault();
-        console.log("favorite clicked");
+//     $("html").on("click", ".members", function (event) {
+//         event.preventDefault();
+//         console.log("favorite clicked");
         
-        $.get(/api/user_data, function(data){
-            favorites = data;
-            initializeFavorites();
-        });
-    })
+//         $.get(/api/user_data, function(data){
+//             favorites = data;
+//             initializeFavorites();
+//         });
+//     })
 
 
 });

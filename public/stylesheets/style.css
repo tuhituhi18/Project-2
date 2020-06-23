@@ -5,11 +5,11 @@ form.login {
 
 body {
   /* background-image: url("/assets/shutterstock_1030504795.jpg"); */
-  background-color: #96EBFF;
+  background-image: url("/assets/shutterstock_299077844.jpg");
   font-family: 'Muli', sans-serif;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: right center;
+  background-position: center center;
   /* background-blend-mode: darken; */
 }
 
@@ -26,6 +26,7 @@ body {
 
 .top-bar {
   background-color: #f04828;
+  color: lightgray;
 }
 
 #top-bar-href, .siteName {
@@ -88,9 +89,13 @@ ul {
 } */
 
 .holy-grail-left {
-  background-color: lightsalmon;
+  background-color: whitesmoke;
+  opacity: 70%;
 }
 
+#resMenu{
+  color: whitesmoke;
+}
 
 #resList {
   flex-flow: column;
