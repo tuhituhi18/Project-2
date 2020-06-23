@@ -191,7 +191,7 @@ $(document).ready(function () {
     // restaurantDiv.append(map);
 
     $("html").on("click", ".save", function (event) {
-        // event.stopPropagation();
+        event.stopPropagation();
         console.log("I've been clicked");
 
         var favorite = {
@@ -211,5 +211,26 @@ $(document).ready(function () {
 
     });
 
+    function initializeFavorites(){
+        $("#resList").empty()
+        var favorite = [];
+        for (var i=0; i< UserFavorite.length; i++){
+            favorite.push(UserFavorite[i])
+        }
+        $("#resLis").prepend(favorite);
+    }
+
+    $("html").on("click", ".members", function (event) {
+        event.preventDefault();
+        console.log("favorite clicked");
+        
+        $.get(/api/user_data, function(data){
+            favorites = data;
+            initializeFavorites();
+        });
+    })
+
 
 });
+
+
